@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/png" href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/qOWZlzkGYKQJxogq.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Immersive Translate × 미국주식 / 국내주식 / Web3 KOL · 협업 참고 자료</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --primitive-pink-50: #FDEDF3;
+      --primitive-pink-200: #FACCDE;
+      --primitive-pink-500: #F294B8;
+      --primitive-pink-600: #EA4C89;
+      --primitive-pink-700: #A9144D;
+      --primitive-neutral-0: #FFFFFF;
+      --primitive-neutral-100: #F7F7F7;
+      --primitive-neutral-200: #E6E6E6;
+      --primitive-neutral-400: #D9D9D9;
+      --primitive-neutral-600: #8A8A8A;
+      --primitive-neutral-950: #333333;
+      --primitive-green-50: #E2F5E0;
+      --primitive-green-600: #51C147;
+      --primitive-red-50: #FCEDEE;
+      --primitive-red-600: #E45052;
+      --primitive-cornflower-50: #ECF3FE;
+      --primitive-cornflower-450: #4181F0;
+      --primitive-orange-50: #FFF2E6;
+      --primitive-orange-500: #FF7D00;
+      --primitive-purple-50: #F0EFF8;
+      --primitive-purple-200: #DBDAF3;
+      --primitive-purple-600: #8685D6;
+      --primitive-purple-700: #2A2859;
+      --primitive-violet-50: #F3F0FF;
+      --primitive-violet-500: #7F63FE;
+      --primitive-blue-50: #EFF6F8;
+      --primitive-blue-200: #DAE9F3;
+      /* Finance theme: teal/green accent */
+      --finance-50: #E6F7F4;
+      --finance-200: #A7E3D8;
+      --finance-500: #0D9488;
+      --finance-600: #0F766E;
+      --finance-700: #115E59;
+      --web3-50: #EDE9FE;
+      --web3-200: #C4B5FD;
+      --web3-500: #7C3AED;
+      --web3-600: #6D28D9;
+
+      --color-action-primary-default: #EA4C89;
+      --color-action-primary-hover: #A9144D;
+      --color-action-primary-bg: #FACCDE;
+      --color-border-subtle: #E6E6E6;
+      --color-border-default: #D9D9D9;
+      --color-border-brand: #EA4C89;
+      --color-border-gradient: #DAE9F3;
+      --color-text-primary: #333333;
+      --color-text-secondary: #8A8A8A;
+      --color-text-placeholder: #D9D9D9;
+      --color-bg-page: #F7F7F7;
+      --color-feedback-success-default: #51C147;
+      --color-feedback-success-bg: #E2F5E0;
+      --color-feedback-error-default: #E45052;
+      --color-feedback-error-bg: #FCEDEE;
+      --color-feedback-info-default: #4181F0;
+      --color-feedback-info-bg: #ECF3FE;
+      --color-status-processing-default: #FF7D00;
+      --color-status-processing-bg: #FFF2E6;
+      --color-status-editing-default: #7F63FE;
+      --color-status-editing-bg: #F3F0FF;
+      --color-vip-default: #8685D6;
+      --color-vip-bg: #F0EFF8;
+      --color-vip-subtle: #DBDAF3;
+      --color-vip-dark: #2A2859;
+      --color-gradient-blue-from: #DAE9F3;
+      --color-gradient-blue-to: #EFF6F8;
+      --color-gradient-brand-from: #F294B8;
+      --color-gradient-brand-to: #EA4C89;
+
+      --radius-button: 8px;
+      --radius-card: 16px;
+      --radius-input: 16px;
+      --radius-badge: 9999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--color-bg-page);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--primitive-neutral-100); }
+    ::-webkit-scrollbar-thumb { background: var(--primitive-neutral-400); border-radius: 3px; }
+
+    .inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 72px 0; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border-subtle);
+      height: 56px; display: flex; align-items: center;
+    }
+    .nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; gap: 16px; }
+    .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; color: var(--color-text-primary); }
+    .nav-logo img { width: 26px; height: 26px; border-radius: 6px; }
+    .nav-sep { color: var(--primitive-neutral-400); font-size: 14px; }
+    .nav-page-name { font-size: 13px; font-weight: 600; color: var(--finance-500); }
+    .nav-links { display: flex; gap: 8px; margin-left: auto; }
+    .nav-links a { font-size: 11.5px; color: var(--color-text-secondary); transition: color 0.15s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--finance-500); }
+    .nav-cta { margin-left: 8px; padding: 6px 14px; border-radius: var(--radius-button); background: var(--finance-500); color: white; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; transition: background 0.15s; }
+    .nav-cta:hover { background: var(--finance-700); }
+    .nav-mobile-btn { display: none; margin-left: auto; background: none; border: none; color: var(--color-text-primary); font-size: 20px; cursor: pointer; }
+
+    .mobile-nav { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 20px; font-weight: 700; color: var(--color-text-primary); }
+    .mobile-nav a:hover { color: var(--finance-500); }
+    .mobile-nav-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: var(--color-text-secondary); font-size: 28px; cursor: pointer; }
+
+    /* BOTTOM BAR */
+    .bottom-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+      border-top: 1px solid var(--color-border-subtle);
+      padding: 10px 24px; display: flex; align-items: center; gap: 14px;
+    }
+    .bottom-bar-logo { width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0; }
+    .bottom-bar-text { font-size: 13px; font-weight: 600; color: var(--color-text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bottom-bar-url { font-size: 11px; color: var(--finance-500); font-family: 'JetBrains Mono', monospace; }
+    .bottom-bar-cta { margin-left: auto; flex-shrink: 0; background: var(--finance-500); color: white; padding: 7px 16px; border-radius: var(--radius-button); font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer; border: none; transition: background 0.15s; }
+    .bottom-bar-cta:hover { background: var(--finance-700); }
+
+    /* SIDE BTNS */
+    .side-btns { position: fixed; left: 16px; top: 50%; transform: translateY(-50%); z-index: 80; display: flex; flex-direction: column; gap: 8px; }
+    .side-btn { display: flex; align-items: center; gap: 7px; padding: 8px 12px; border-radius: 10px; background: white; border: 1px solid var(--color-border-default); font-size: 14px; cursor: pointer; transition: all 0.15s; color: var(--color-text-secondary); white-space: nowrap; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .side-btn:hover { border-color: var(--finance-500); color: var(--finance-500); box-shadow: 0 2px 8px rgba(13,148,136,0.12); }
+    .side-btn-label { font-size: 12px; font-weight: 600; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.35); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: white; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-card); padding: 28px; max-width: 460px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+    .modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--color-text-secondary); font-size: 22px; cursor: pointer; }
+    .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--color-text-primary); }
+    .modal-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 18px; line-height: 1.7; }
+    .wx-card { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: var(--radius-button); background: var(--primitive-neutral-100); border: 1px solid var(--color-border-subtle); margin-bottom: 8px; }
+    .wx-platform { width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; background: white; border: 1px solid var(--color-border-subtle); }
+    .wx-info { flex: 1; }
+    .wx-name { font-size: 13px; font-weight: 600; color: var(--color-text-primary); }
+    .wx-id { font-size: 12px; color: var(--finance-500); font-family: 'JetBrains Mono', monospace; margin-top: 1px; }
+    .wx-copy { padding: 5px 11px; border-radius: var(--radius-button); background: white; border: 1px solid var(--color-border-default); font-size: 11px; font-weight: 600; color: var(--color-text-secondary); cursor: pointer; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; }
+    .wx-copy:hover { border-color: var(--finance-500); color: var(--finance-500); }
+    .wx-copy.copied { border-color: var(--color-feedback-success-default); color: var(--color-feedback-success-default); }
+
+    .share-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px; }
+    .share-item { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 14px 8px; border-radius: var(--radius-button); background: var(--primitive-neutral-100); border: 1px solid var(--color-border-subtle); cursor: pointer; transition: all 0.15s; }
+    .share-item:hover { border-color: var(--finance-500); background: var(--finance-50); }
+    .share-plat-icon { font-size: 22px; }
+    .share-plat-label { font-size: 11px; color: var(--color-text-secondary); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes gradShift { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+    @keyframes marquee { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    /* SECTION HEADER */
+    .sec-head { text-align: center; margin-bottom: 44px; }
+    .sec-label { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--finance-500); margin-bottom: 10px; background: var(--finance-50); padding: 4px 12px; border-radius: var(--radius-badge); border: 1px solid var(--finance-200); }
+    .sec-title { font-size: clamp(22px, 3vw, 34px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; color: var(--color-text-primary); }
+    .sec-desc { font-size: 15px; color: var(--color-text-secondary); max-width: 580px; margin: 0 auto; line-height: 1.8; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 20px; border-radius: var(--radius-button); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.15s; border: none; }
+    .btn-lg { padding: 12px 24px; font-size: 15px; }
+    .btn-primary { background: var(--finance-500); color: white; }
+    .btn-primary:hover { background: var(--finance-700); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,148,136,0.25); }
+    .btn-outline { background: white; color: var(--finance-500); border: 1.5px solid var(--finance-500); }
+    .btn-outline:hover { background: var(--finance-50); }
+    .btn-ghost { background: white; color: var(--color-text-secondary); border: 1px solid var(--color-border-default); }
+    .btn-ghost:hover { border-color: var(--color-border-default); color: var(--color-text-primary); background: var(--primitive-neutral-100); }
+
+    /* TAGS */
+    .tag { padding: 3px 10px; border-radius: var(--radius-badge); font-size: 11px; font-weight: 600; }
+    .tag-finance { background: var(--finance-50); color: var(--finance-500); border: 1px solid var(--finance-200); }
+    .tag-web3 { background: var(--web3-50); color: var(--web3-500); border: 1px solid var(--web3-200); }
+    .tag-brand { background: var(--primitive-pink-50); color: var(--color-action-primary-default); border: 1px solid var(--primitive-pink-200); }
+    .tag-green { background: var(--color-feedback-success-bg); color: var(--color-feedback-success-default); border: 1px solid #b8e8b5; }
+    .tag-blue { background: var(--color-feedback-info-bg); color: var(--color-feedback-info-default); border: 1px solid #b8d4f8; }
+    .tag-orange { background: var(--color-status-processing-bg); color: var(--color-status-processing-default); border: 1px solid #ffd4a8; }
+    .tag-purple { background: var(--color-vip-bg); color: var(--color-vip-default); border: 1px solid var(--color-vip-subtle); }
+    .tag-violet { background: var(--color-status-editing-bg); color: var(--color-status-editing-default); border: 1px solid #c8bffd; }
+    .tag-neutral { background: var(--primitive-neutral-100); color: var(--color-text-secondary); border: 1px solid var(--color-border-subtle); }
+    .badge-free { padding: 2px 8px; border-radius: var(--radius-badge); font-size: 10px; font-weight: 700; background: var(--color-feedback-success-bg); color: var(--color-feedback-success-default); border: 1px solid #b8e8b5; }
+    .badge-pro { padding: 2px 8px; border-radius: var(--radius-badge); font-size: 10px; font-weight: 700; background: var(--color-vip-bg); color: var(--color-vip-default); border: 1px solid var(--color-vip-subtle); }
+
+    /* HERO */
+    .hero-bg {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding-top: 80px; padding-bottom: 48px;
+      background: linear-gradient(160deg, var(--finance-50) 0%, white 40%, var(--web3-50) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero-deco-1 { position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(13,148,136,0.07) 0%, transparent 70%); pointer-events: none; }
+    .hero-deco-2 { position: absolute; bottom: -60px; left: -60px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%); pointer-events: none; }
+    .hero-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .hero-logo-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 24px; animation: fadeInUp 0.5s ease both; }
+    .hero-logo-img { width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--color-border-subtle); box-shadow: 0 4px 16px rgba(13,148,136,0.15); animation: float 4s ease infinite; }
+    .hero-x { font-size: 22px; color: var(--primitive-neutral-400); font-weight: 300; }
+    .hero-platform-badge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 12px; background: white; border: 1px solid var(--color-border-subtle); font-size: 14px; font-weight: 700; color: var(--color-text-primary); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; border-radius: var(--radius-badge); background: var(--finance-50); border: 1px solid var(--finance-200); font-size: 12px; font-weight: 600; color: var(--finance-500); margin-bottom: 20px; animation: fadeInUp 0.5s ease 0.1s both; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--finance-500); animation: pulse 2s infinite; }
+    .hero-h1 { font-size: clamp(26px, 4.5vw, 50px); font-weight: 900; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 18px; animation: fadeInUp 0.5s ease 0.15s both; color: var(--color-text-primary); }
+    .grad-finance { background: linear-gradient(135deg, var(--finance-500), var(--web3-500)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 16px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 32px; animation: fadeInUp 0.5s ease 0.2s both; max-width: 620px; margin-left: auto; margin-right: auto; }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; animation: fadeInUp 0.5s ease 0.25s both; margin-bottom: 28px; }
+    .hero-tracks { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.5s ease 0.28s both; margin-bottom: 10px; }
+    .track-chip { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: var(--radius-badge); font-size: 12px; font-weight: 700; border: 1px solid; }
+    .track-stock { background: var(--finance-50); border-color: var(--finance-200); color: var(--finance-500); }
+    .track-web3 { background: var(--web3-50); border-color: var(--web3-200); color: var(--web3-500); }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; animation: fadeInUp 0.5s ease 0.3s both; }
+    .hero-chip { padding: 4px 10px; border-radius: var(--radius-badge); background: white; border: 1px solid var(--color-border-subtle); font-size: 12px; color: var(--color-text-secondary); font-weight: 500; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .hero-stats { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--color-border-subtle); animation: fadeInUp 0.5s ease 0.34s both; }
+    .stat { text-align: center; padding: 0 28px; border-right: 1px solid var(--color-border-subtle); }
+    .stat:last-child { border-right: none; }
+    .stat-n { font-size: 24px; font-weight: 900; color: var(--color-text-primary); letter-spacing: -0.03em; }
+    .stat-n em { color: var(--finance-500); font-style: normal; }
+    .stat-l { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+
+    /* MARQUEE */
+    .marquee-wrap { overflow: hidden; padding: 14px 0; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); background: white; }
+    .marquee-track { display: flex; gap: 0; width: max-content; animation: marquee 30s linear infinite; }
+    .marquee-item { display: flex; align-items: center; gap: 8px; padding: 0 24px; font-size: 13px; font-weight: 600; color: var(--color-text-secondary); white-space: nowrap; }
+    .marquee-sep { color: var(--color-border-default); }
+
+    /* BRIEF */
+    .brief-bg { background: white; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); }
+    .brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+    @media (max-width: 600px) { .brief-grid { grid-template-columns: 1fr; } }
+    .brief-card { background: var(--primitive-neutral-100); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-card); padding: 20px; transition: border-color 0.15s, box-shadow 0.15s; display: flex; flex-direction: column; }
+    .brief-card:hover { border-color: var(--color-border-default); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .brief-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .brief-card-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+    .brief-card-title { font-size: 14px; font-weight: 800; color: var(--color-text-primary); }
+    .brief-card-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 1px; }
+    .brief-card-body { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+    .brief-card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .key-info-box { margin-top: 20px; padding: 22px; background: var(--finance-50); border: 1px solid var(--finance-200); border-radius: var(--radius-card); border-left: 3px solid var(--finance-500); }
+    .key-info-label { font-size: 11px; font-weight: 800; color: var(--finance-500); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+    .key-info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 768px) { .key-info-grid { grid-template-columns: 1fr 1fr; } }
+    .key-info-item { display: flex; gap: 10px; align-items: flex-start; }
+    .key-info-num { font-size: 16px; font-weight: 900; color: var(--finance-500); flex-shrink: 0; line-height: 1.4; }
+    .key-info-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+    .key-info-text strong { color: var(--color-text-primary); }
+
+    /* PRIVACY FEATURE HIGHLIGHT */
+    .privacy-highlight { margin-top: 28px; padding: 24px; background: linear-gradient(135deg, var(--web3-50) 0%, var(--finance-50) 100%); border: 1px solid var(--web3-200); border-radius: var(--radius-card); }
+    .privacy-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: var(--radius-badge); background: var(--web3-50); border: 1px solid var(--web3-200); font-size: 11px; font-weight: 700; color: var(--web3-500); margin-bottom: 12px; }
+    .privacy-title { font-size: 17px; font-weight: 900; color: var(--color-text-primary); margin-bottom: 8px; }
+    .privacy-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 16px; }
+    .privacy-steps { display: flex; gap: 0; align-items: center; flex-wrap: wrap; }
+    .privacy-step { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: white; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-button); font-size: 12px; font-weight: 600; color: var(--color-text-primary); }
+    .privacy-arrow { color: var(--finance-500); font-size: 16px; padding: 0 4px; }
+
+    /* DEMO */
+    .demo-bg { background: white; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); }
+    .demo-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .demo-tab { padding: 8px 16px; border-radius: var(--radius-badge); border: 1.5px solid var(--color-border-default); background: white; font-size: 13px; font-weight: 600; color: var(--color-text-secondary); cursor: pointer; transition: all 0.15s; }
+    .demo-tab.active { background: var(--finance-500); color: white; border-color: var(--finance-500); }
+    .demo-tab.active-web3 { background: var(--web3-500); color: white; border-color: var(--web3-500); }
+    .demo-panel { display: none; }
+    .demo-panel.active { display: block; }
+    .demo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+    .demo-layout.reverse { direction: rtl; }
+    .demo-layout.reverse > * { direction: ltr; }
+    .demo-img-wrap { border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--color-border-subtle); box-shadow: 0 8px 32px rgba(0,0,0,0.08); background: var(--primitive-neutral-100); }
+    .demo-img-wrap img { width: 100%; display: block; }
+    .demo-text-wrap { display: flex; flex-direction: column; gap: 16px; }
+    .demo-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: var(--radius-badge); font-size: 11px; font-weight: 700; }
+    .demo-badge-finance { background: var(--finance-50); color: var(--finance-500); border: 1px solid var(--finance-200); }
+    .demo-badge-web3 { background: var(--web3-50); color: var(--web3-500); border: 1px solid var(--web3-200); }
+    .demo-title { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.3; color: var(--color-text-primary); }
+    .demo-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.8; }
+    .demo-points { display: flex; flex-direction: column; gap: 8px; }
+    .demo-point { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--color-text-primary); }
+    .demo-point-icon { width: 20px; height: 20px; border-radius: 50%; background: var(--color-feedback-success-bg); color: var(--color-feedback-success-default); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    @media (max-width: 680px) { .demo-layout { grid-template-columns: 1fr; } .demo-layout.reverse { direction: ltr; } }
+
+    /* CONTENT GUIDE */
+    .guide-bg { background: var(--primitive-neutral-100); }
+    .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .guide-grid { grid-template-columns: 1fr; } }
+    .guide-card { background: white; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-card); padding: 22px; transition: all 0.15s; }
+    .guide-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-color: var(--finance-200); }
+    .guide-card-num { font-size: 11px; font-weight: 800; color: var(--finance-500); letter-spacing: 0.1em; margin-bottom: 8px; }
+    .guide-card-title { font-size: 16px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 8px; line-height: 1.4; }
+    .guide-card-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 12px; }
+    .guide-quote { padding: 12px 14px; background: var(--finance-50); border-left: 3px solid var(--finance-500); border-radius: 0 var(--radius-button) var(--radius-button) 0; font-size: 12px; color: var(--color-text-secondary); line-height: 1.7; font-style: italic; margin-top: 10px; }
+    .guide-quote-web3 { padding: 12px 14px; background: var(--web3-50); border-left: 3px solid var(--web3-500); border-radius: 0 var(--radius-button) var(--radius-button) 0; font-size: 12px; color: var(--color-text-secondary); line-height: 1.7; font-style: italic; margin-top: 10px; }
+
+    /* VIDEO SECTION */
+    .video-bg { background: white; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); }
+    .video-wrap { border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--color-border-subtle); box-shadow: 0 8px 32px rgba(0,0,0,0.08); position: relative; padding-bottom: 56.25%; height: 0; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .video-meta { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+    .video-creator-badge { display: flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: var(--radius-badge); background: var(--primitive-neutral-100); border: 1px solid var(--color-border-subtle); font-size: 13px; font-weight: 600; color: var(--color-text-primary); }
+    .video-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+
+    /* INSTALL */
+    .install-bg { background: var(--primitive-neutral-100); }
+    .install-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+    .install-tab { padding: 6px 14px; border-radius: var(--radius-badge); font-size: 13px; font-weight: 600; background: white; border: 1px solid var(--color-border-default); color: var(--color-text-secondary); cursor: pointer; transition: all 0.15s; }
+    .install-tab.active { background: var(--finance-50); border-color: var(--finance-200); color: var(--finance-500); }
+    .install-panel { display: none; }
+    .install-panel.active { display: block; }
+    .install-steps { display: flex; flex-direction: column; gap: 12px; }
+    .install-step { display: flex; gap: 14px; align-items: flex-start; padding: 16px; background: white; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-card); }
+    .install-step-num { width: 28px; height: 28px; border-radius: 8px; background: var(--finance-50); border: 1px solid var(--finance-200); color: var(--finance-500); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+    .install-step-title { font-size: 14px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
+    .install-step-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+    .install-step-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: var(--finance-500); margin-top: 4px; }
+    .install-step-link:hover { text-decoration: underline; }
+
+    /* COLLAB FLOW */
+    .collab-bg { background: white; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); }
+    .flow-steps { display: flex; flex-direction: column; gap: 0; }
+    .flow-step { display: flex; gap: 0; }
+    .flow-step-left { display: flex; flex-direction: column; align-items: center; width: 56px; flex-shrink: 0; }
+    .flow-step-num { width: 40px; height: 40px; border-radius: 10px; background: var(--finance-50); border: 1.5px solid var(--finance-200); color: var(--finance-500); font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
+    .flow-step-line { width: 2px; flex: 1; background: var(--color-border-subtle); margin: 6px 0; min-height: 20px; }
+    .flow-step:last-child .flow-step-line { display: none; }
+    .flow-step-right { flex: 1; padding: 0 0 28px 20px; }
+    .flow-step-tag { display: inline-block; margin-bottom: 6px; }
+    .flow-step-title { font-size: 16px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 6px; }
+    .flow-step-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 10px; }
+    .flow-step-items { display: flex; flex-wrap: wrap; gap: 6px; }
+    .flow-item { padding: 4px 10px; border-radius: var(--radius-badge); background: var(--primitive-neutral-100); border: 1px solid var(--color-border-subtle); font-size: 12px; color: var(--color-text-secondary); font-weight: 500; }
+
+    /* BENEFIT CARDS */
+    .benefit-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+    @media (max-width: 640px) { .benefit-cards { grid-template-columns: 1fr; } }
+    .benefit-card { padding: 14px; background: var(--primitive-neutral-100); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-card); }
+    .benefit-card-label { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+    .benefit-card-title { font-size: 14px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 4px; }
+    .benefit-card-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .testimonials-bg { background: linear-gradient(160deg, var(--finance-50) 0%, white 60%); }
+    .testi-scroll-track { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--color-border-default) transparent; padding-bottom: 8px; }
+    .testi-scroll-track::-webkit-scrollbar { height: 4px; }
+    .testi-scroll-track::-webkit-scrollbar-track { background: transparent; }
+    .testi-scroll-track::-webkit-scrollbar-thumb { background: var(--color-border-default); border-radius: 2px; }
+    .testi-scroll-inner { display: flex; gap: 20px; width: max-content; padding: 4px 2px; }
+    .testi-scroll-inner .testi-card { width: 300px; flex-shrink: 0; }
+    .testi-card { background: white; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-card); padding: 20px; }
+    .testi-stars { color: #F59E0B; font-size: 14px; margin-bottom: 10px; }
+    .testi-quote { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 14px; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .testi-avatar { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .testi-name { font-size: 13px; font-weight: 700; color: var(--color-text-primary); }
+    .testi-role { font-size: 11px; color: var(--color-text-secondary); margin-top: 1px; }
+    .testi-plat { display: inline-block; margin-top: 3px; padding: 2px 8px; border-radius: var(--radius-badge); font-size: 10px; font-weight: 700; }
+
+    /* ENTERPRISE */
+    .enterprise-bg { background: var(--primitive-neutral-100); }
+    .enterprise-simple-card { display: flex; align-items: center; justify-content: space-between; gap: 32px; background: linear-gradient(135deg, var(--finance-50) 0%, var(--web3-50) 100%); border: 1px solid var(--finance-200); border-radius: var(--radius-card); padding: 32px 40px; }
+    .enterprise-simple-left { display: flex; align-items: flex-start; gap: 16px; flex: 1; }
+    .enterprise-simple-icon { font-size: 36px; flex-shrink: 0; }
+    .enterprise-simple-title { font-size: 18px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px; }
+    .enterprise-simple-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+    .enterprise-cta-title { font-size: 15px; font-weight: 800; color: var(--finance-700); margin-bottom: 3px; }
+    .enterprise-cta-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 10px; }
+    .enterprise-cta-btn { padding: 10px 22px; border-radius: var(--radius-button); background: linear-gradient(135deg, var(--finance-600) 0%, var(--web3-500) 100%); color: white; font-size: 14px; font-weight: 700; border: none; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+    .enterprise-cta-btn:hover { opacity: 0.88; }
+    @media (max-width: 680px) { .enterprise-simple-card { flex-direction: column; padding: 24px; } }
+
+    /* CONTACT */
+    .contact-bg { background: white; border-top: 1px solid var(--color-border-subtle); }
+
+    /* FOOTER */
+    footer { background: var(--color-text-primary); color: white; padding: 40px 0; }
+    .footer-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .footer-logo-img { width: 28px; height: 28px; border-radius: 7px; }
+    .footer-name { font-size: 15px; font-weight: 800; }
+    .footer-desc { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-links a:hover { color: white; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-mobile-btn { display: block; }
+      .side-btns { display: none; }
+      .stat { padding: 0 16px; }
+      .hero-stats { gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .stat { padding: 8px 12px; border-right: none; border-bottom: 1px solid var(--color-border-subtle); width: 50%; }
+      .stat:nth-child(even) { border-right: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/qOWZlzkGYKQJxogq.png" alt="Immersive Translate" />
+      <span>Immersive Translate</span>
+    </div>
+    <span class="nav-sep">/</span>
+    <span class="nav-page-name">📈 투자 / Web3 KOL</span>
+    <div class="nav-links">
+      <a href="#brief">제품 브리프</a>
+      <a href="#demo">기능 시연</a>
+      <a href="#guide">제작 가이드</a>
+      <a href="#collab">협업 프로세스</a>
+      <a href="#contact">문의하기</a>
+    </div>
+    <button class="nav-cta" onclick="openModal('collabModal')">협업 문의</button>
+    <button class="nav-mobile-btn" onclick="openMobileNav()">☰</button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">×</button>
+  <a href="#brief" onclick="closeMobileNav()">제품 브리프</a>
+  <a href="#demo" onclick="closeMobileNav()">기능 시연</a>
+  <a href="#guide" onclick="closeMobileNav()">제작 가이드</a>
+  <a href="#collab" onclick="closeMobileNav()">협업 프로세스</a>
+  <a href="#contact" onclick="closeMobileNav()">문의하기</a>
+</div>
+
+<!-- SIDE BTNS -->
+<div class="side-btns">
+  <button class="side-btn" onclick="openModal('collabModal')"><span>🤝</span><span class="side-btn-label">협업 문의</span></button>
+  <button class="side-btn" onclick="openModal('shareModal')"><span>🔗</span><span class="side-btn-label">공유하기</span></button>
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+  <img class="bottom-bar-logo" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/qOWZlzkGYKQJxogq.png" alt="" />
+  <div>
+    <div class="bottom-bar-text">Immersive Translate</div>
+    <div class="bottom-bar-url">immersivetranslate.com</div>
+  </div>
+  <button class="bottom-bar-cta" onclick="window.open('https://immersivetranslate.com/ko/','_blank')">공식 홈페이지 ↗</button>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero-bg" id="hero">
+  <div class="hero-deco-1"></div>
+  <div class="hero-deco-2"></div>
+  <div class="hero-inner">
+    <div class="hero-logo-row">
+      <img class="hero-logo-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/qOWZlzkGYKQJxogq.png" alt="Immersive Translate" />
+      <span class="hero-x">×</span>
+      <div class="hero-platform-badge"><span style="font-size:20px">📈</span><span>미국주식 / 국내주식 / Web3 KOL</span></div>
+    </div>
+    <div class="hero-eyebrow"><div class="live-dot"></div>미국주식 · 국내주식 · Crypto · Web3 · 글로벌 투자 리서처 · 크리에이터 협업 참고 자료</div>
+    <h1 class="hero-h1">글로벌 투자 정보, <span class="grad-finance">언어 장벽 없이</span> 탐색하기<br>+ 로컬 프라이버시 보호 AI 번역</h1>
+    <p class="hero-sub">전 세계 2,000만 명 이상이 사용하는 AI 번역 브라우저 플러그인 — SEC 공시, 어닝콜, 영문 백서, X(Twitter) KOL 트윗, Reddit WallStreetBets까지 실시간으로 번역합니다. 새로운 <strong>OneAIFW 개인정보 보호 모드</strong>로 계좌번호, 지갑 주소, 프라이빗 키가 클라우드에 절대 전송되지 않습니다.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn btn-primary btn-lg">기능 시연 보기</a>
+      <a href="#guide" class="btn btn-outline btn-lg">제작 가이드 보기</a>
+      <a href="https://immersivetranslate.com/ko/" target="_blank" class="btn btn-ghost btn-lg">🌐 공식 홈페이지 ↗</a>
+    </div>
+    <div class="hero-tracks">
+      <div class="track-chip track-stock">📊 미국주식 / 국내주식 / 글로벌 투자 리서처</div>
+      <div class="track-chip track-web3">🔗 Crypto / Web3 / DeFi / NFT</div>
+    </div>
+    <div class="hero-chips" style="margin-top:10px;">
+      <span class="hero-chip">📰 SEC 공시 실시간 번역</span>
+      <span class="hero-chip">📄 BabelDOC 리서치 리포트</span>
+      <span class="hero-chip">🔒 OneAIFW 프라이버시 보호</span>
+      <span class="hero-chip">🐦 X(Twitter) 이중언어</span>
+      <span class="hero-chip">💬 Discord / Telegram</span>
+      <span class="hero-chip">💰 USDT / USDC 결제</span>
+      <span class="hero-chip">🧠 금융 전문가 AI 모드</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n"><em>2,000</em>만+</div><div class="stat-l">글로벌 유저</div></div>
+      <div class="stat"><div class="stat-n"><em>100</em>+</div><div class="stat-l">지원 언어</div></div>
+      <div class="stat"><div class="stat-n"><em>20</em>+</div><div class="stat-l">AI 번역 엔진</div></div>
+      <div class="stat"><div class="stat-n">2024</div><div class="stat-l">Chrome 올해의 확장프로그램</div></div>
+      <div class="stat"><div class="stat-n">🔒 MIT</div><div class="stat-l">오픈소스 보안</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">📊 미국주식 실적 발표</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">📄 SEC 10-K / 10-Q 공시</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🎙️ 어닝콜 스크립트</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🔗 DeFi 백서 번역</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🐦 X(Twitter) KOL 트윗</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">💬 Reddit WallStreetBets</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🔒 프라이빗 키 보호</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">💰 USDT / USDC 결제</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🧠 금융 전문가 AI 모드</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">📰 Bloomberg / WSJ 번역</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">📊 미국주식 실적 발표</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">📄 SEC 10-K / 10-Q 공시</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🎙️ 어닝콜 스크립트</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🔗 DeFi 백서 번역</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🐦 X(Twitter) KOL 트윗</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">💬 Reddit WallStreetBets</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🔒 프라이빗 키 보호</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">💰 USDT / USDC 결제</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">🧠 금융 전문가 AI 모드</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">📰 Bloomberg / WSJ 번역</span><span class="marquee-sep">·</span>
+  </div>
+</div>
+
+<!-- ===== PRODUCT BRIEF ===== -->
+<section class="brief-bg" id="brief">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Product Brief</div>
+      <h2 class="sec-title">제품 브리프</h2>
+      <p class="sec-desc">한 줄 요약: Immersive Translate는 글로벌 투자자와 Web3 유저가 어떤 언어의 금융·투자 정보도 막힘 없이 읽고, 민감한 자산 정보를 안전하게 지킬 수 있게 해주는 AI 번역 브라우저 플러그인입니다.</p>
+    </div>
+    <div class="brief-grid reveal">
+      <div class="brief-card">
+        <div class="brief-card-head">
+          <div class="brief-card-icon" style="background:var(--finance-50)">📊</div>
+          <div><div class="brief-card-title">핵심 포지셔닝</div><div class="brief-card-sub">글로벌 투자자 전용 AI 이중언어 번역 플러그인</div></div>
+        </div>
+        <div class="brief-card-body">설치 즉시 Bloomberg, WSJ, SEC EDGAR, X(Twitter), Reddit, Discord, Telegram 등 모든 투자 정보 채널을 이중언어로 읽을 수 있습니다. Chrome / Edge / Firefox 완벽 지원.</div>
+        <div class="brief-card-tags">
+          <span class="tag tag-finance">브라우저 플러그인</span>
+          <span class="tag tag-blue">이중언어 대조</span>
+          <span class="tag tag-green">기본 기능 무료</span>
+        </div>
+      </div>
+      <div class="brief-card">
+        <div class="brief-card-head">
+          <div class="brief-card-icon" style="background:var(--web3-50)">🔒</div>
+          <div><div class="brief-card-title">핵심 신기능: OneAIFW 프라이버시 보호</div><div class="brief-card-sub">로컬 마스킹 → 클라우드 번역 → 로컬 복원</div></div>
+        </div>
+        <div class="brief-card-body">계좌번호, 프라이빗 키, 지갑 주소, 인증 코드 등 민감 정보를 로컬에서 먼저 마스킹한 후 클라우드로 전송합니다. <strong>AI는 절대 실제 민감 정보를 볼 수 없습니다.</strong> MIT 오픈소스로 완전 투명하게 공개되어 있습니다.</div>
+        <div class="brief-card-tags">
+          <span class="tag tag-web3">MIT 오픈소스</span>
+          <span class="tag tag-green">로컬 처리</span>
+          <span class="tag tag-purple">Beta</span>
+        </div>
+      </div>
+      <div class="brief-card">
+        <div class="brief-card-head">
+          <div class="brief-card-icon" style="background:var(--color-feedback-success-bg)">💰</div>
+          <div><div class="brief-card-title">가격 및 결제 수단</div><div class="brief-card-sub">신용카드 + USDT / USDC 결제 지원</div></div>
+        </div>
+        <div class="brief-card-body">기본 웹페이지/영상 번역은 완전 무료입니다. Pro 멤버십으로 금융 전문가 AI 모드, BabelDOC 리포트 번역(<strong style="color:var(--color-feedback-success-default)">월 100장 무료</strong>), 커스텀 프롬프트를 잠금 해제하세요. 신용카드 없이 <strong>USDT / USDC</strong>로도 바로 결제 가능합니다.</div>
+        <div class="brief-card-tags">
+          <span class="tag tag-green">기본 기능 무료</span>
+          <span class="tag tag-web3">USDT / USDC 결제</span>
+          <span class="tag tag-purple">Pro 멤버십</span>
+        </div>
+      </div>
+      <div class="brief-card">
+        <div class="brief-card-head">
+          <div class="brief-card-icon" style="background:var(--color-feedback-info-bg)">🧠</div>
+          <div><div class="brief-card-title">금융 / Web3 전문가 AI 모드</div><div class="brief-card-sub">전문 용어 번역 정확도 대폭 향상</div></div>
+        </div>
+        <div class="brief-card-body">재무제표, SEC 공시, 백서를 읽을 때 <strong>'금융 전문가 모드'</strong> 또는 <strong>'Web3 번역 전문가 모드'</strong>를 선택하면 gross profit margin, EPS, TVL, staking yield 등 전문 용어가 훨씬 정확하게 번역됩니다.</div>
+        <div class="brief-card-tags">
+          <span class="tag tag-finance">금융 전문가 모드</span>
+          <span class="tag tag-web3">Web3 전문가 모드</span>
+          <span class="tag tag-purple">Pro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY INFO -->
+    <div class="key-info-box reveal">
+      <div class="key-info-label">글로벌 투자자가 Immersive Translate를 써야 하는 이유</div>
+      <div class="key-info-grid">
+        <div class="key-info-item">
+          <div class="key-info-num">01</div>
+          <div class="key-info-text"><strong>안심하고 읽기</strong><br>프라이빗 투자 리포트, 내부 문서, 온체인 정보를 클라우드 유출 걱정 없이 번역</div>
+        </div>
+        <div class="key-info-item">
+          <div class="key-info-num">02</div>
+          <div class="key-info-text"><strong>정보 시차 제로</strong><br>미국 실적 발표, 영문 어닝콜, SEC 공시를 남들보다 빠르게 한국어로 확인</div>
+        </div>
+        <div class="key-info-item">
+          <div class="key-info-num">03</div>
+          <div class="key-info-text"><strong>글로벌 커뮤니티 참여</strong><br>X(Twitter), Discord, Telegram, Reddit WallStreetBets 실시간 번역</div>
+        </div>
+        <div class="key-info-item">
+          <div class="key-info-num">04</div>
+          <div class="key-info-text"><strong>Web3 네이티브 결제</strong><br>신용카드 없이 USDT / USDC로 Pro 멤버십 바로 결제 가능</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIVACY HIGHLIGHT -->
+    <div class="privacy-highlight reveal">
+      <div class="privacy-badge">🔒 핵심 업데이트 · OneAIFW (Beta)</div>
+      <div class="privacy-title">AI도 눈을 감을 수 있어요. 내 자산 정보는 나만 봅니다.</div>
+      <div class="privacy-desc">계좌 번호, 프라이빗 키, 지갑 주소, 결제 정보를 로컬에서 먼저 마스킹하기 때문에 클라우드에는 '익명 텍스트'만 전달됩니다. 번역이 끝나면 로컬에서 원본으로 다시 복원됩니다. 프로젝트 펀딩 자료, 파트너십 문서, 법률 계약서, 프라이빗 투자 리포트를 다룰 때도 걱정 없이 사용할 수 있습니다.</div>
+      <div class="privacy-steps">
+        <div class="privacy-step">🖥️ 로컬 마스킹<br><small style="color:var(--color-text-secondary)">민감 정보 → 익명 코드</small></div>
+        <div class="privacy-arrow">→</div>
+        <div class="privacy-step">☁️ 클라우드 번역<br><small style="color:var(--color-text-secondary)">익명 텍스트만 처리</small></div>
+        <div class="privacy-arrow">→</div>
+        <div class="privacy-step">🔓 로컬 복원<br><small style="color:var(--color-text-secondary)">원본 정보 복원</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEMO ===== -->
+<section class="demo-bg" id="demo">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Feature Demo</div>
+      <h2 class="sec-title">기능 시연</h2>
+      <p class="sec-desc">실제 투자 리서치 환경에서 Immersive Translate가 어떻게 작동하는지 확인하세요.</p>
+    </div>
+    <div class="demo-tabs reveal">
+      <button class="demo-tab active" onclick="switchDemo(0)">📰 Bloomberg 뉴스 번역</button>
+      <button class="demo-tab" onclick="switchDemo(1)">📄 리서치 리포트 (BabelDOC)</button>
+      <button class="demo-tab active-web3" onclick="switchDemo(2)">🔒 프라이버시 보호 모드</button>
+    </div>
+
+    <div class="demo-panel active" id="demo-0">
+      <div class="demo-layout reveal">
+        <div class="demo-img-wrap">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/pMpsLIForxDlRGdz.png" alt="Bloomberg 번역 전" loading="lazy" />
+        </div>
+        <div class="demo-text-wrap">
+          <div class="demo-badge demo-badge-finance">📰 번역 전 (영어 원문)</div>
+          <div class="demo-title">Bloomberg / WSJ 기사, 영어라서 놓치고 계신가요?</div>
+          <div class="demo-desc">미국 주식 실적 발표, 영어라서 남들보다 늦게 확인하고 계신가요? 몰입형 번역으로 어닝콜 스크립트와 SEC 공시를 실시간으로 읽어보세요. 언어가 장벽이 아니라 수익률을 높이는 무기가 됩니다.</div>
+          <div class="demo-points">
+            <div class="demo-point"><div class="demo-point-icon">✓</div>Bloomberg, WSJ, Reuters 등 주요 금융 미디어 완벽 지원</div>
+            <div class="demo-point"><div class="demo-point-icon">✓</div>원문과 번역문을 위아래로 동시에 표시 (이중언어 대조)</div>
+            <div class="demo-point"><div class="demo-point-icon">✓</div>금융 전문가 AI 모드로 gross margin, EPS 등 전문 용어 정확 번역</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-panel" id="demo-1">
+      <div class="demo-layout reveal">
+        <div class="demo-text-wrap">
+          <div class="demo-badge demo-badge-finance">📄 BabelDOC · Pro 기능</div>
+          <div class="demo-title">Morgan Stanley 리서치 리포트, 레이아웃 그대로 번역</div>
+          <div class="demo-desc">구글 번역의 치명적인 단점(표 깨짐, 차트 손상, 레이아웃 붕괴)을 완벽히 해결했습니다. 복잡한 재무 데이터 테이블, 바 차트, 각주까지 원본 레이아웃을 그대로 유지하면서 한국어로 번역합니다.</div>
+          <div class="demo-points">
+            <div class="demo-point"><div class="demo-point-icon">✓</div>재무제표, SEC 공시(10-K/10-Q), 어닝콜 스크립트 완벽 지원</div>
+            <div class="demo-point"><div class="demo-point-icon">✓</div>표, 차트, LaTeX 수식 레이아웃 100% 보존</div>
+            <div class="demo-point"><div class="demo-point-icon">✓</div>영문 백서, DeFi 문서, NFT 프로젝트 소개서 번역</div>
+            <div class="demo-point"><div class="demo-point-icon">✓</div>무료 월 100장, Pro로 무제한 이용</div>
+          </div>
+        </div>
+        <div class="demo-img-wrap">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/gztEkIbNwvCQInpu.png" alt="BabelDOC 리포트 번역" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-panel" id="demo-2">
+      <div class="demo-layout reveal">
+        <div class="demo-img-wrap">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/pJbxCcwwgWoMJMnP.png" alt="프라이버시 보호 모드" loading="lazy" />
+        </div>
+        <div class="demo-text-wrap">
+          <div class="demo-badge demo-badge-web3">🔒 OneAIFW · 프라이버시 보호 모드 (Beta)</div>
+          <div class="demo-title">번역하다가 내 계좌 정보나 지갑 주소가 새어 나갈까 봐 걱정되셨나요?</div>
+          <div class="demo-desc">Immersive Translate의 새 개인정보 보호 모드는 AI를 완전히 '눈먼 번역사'로 만들어줘요. 번역은 완벽하게 해주면서 내 핵심 자산 정보는 절대 볼 수 없죠. 이게 진짜 똑똑한 투자자가 써야 할 도구입니다.</div>
+          <div class="demo-points">
+            <div class="demo-point"><div class="demo-point-icon">✓</div>프라이빗 키, 지갑 주소, 계좌번호 → 로컬에서 자동 마스킹</div>
+            <div class="demo-point"><div class="demo-point-icon">✓</div>클라우드는 익명화된 텍스트만 처리, 실제 정보 접근 불가</div>
+            <div class="demo-point"><div class="demo-point-icon">✓</div>MIT 오픈소스 — 코드 전체 공개, 누구나 직접 검증 가능</div>
+            <div class="demo-point"><div class="demo-point-icon">✓</div>브라우저를 닫으면 임시 데이터 즉시 삭제, 영구 저장 없음</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REFERENCE VIDEO ===== -->
+<section class="video-bg" id="video">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Reference Video</div>
+      <h2 class="sec-title">참고 영상</h2>
+      <p class="sec-desc">실제 크리에이터가 Immersive Translate를 금융 리서치에 활용하는 방법을 확인하세요. 콘텐츠 제작 시 참고하시되, 본인만의 스타일로 자유롭게 제작해주세요.</p>
+    </div>
+    <div class="reveal" style="max-width:720px;margin:0 auto;">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/aoRIwvC85Vg" title="Immersive Translate 금융 리서치 활용법" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-meta">
+        <div class="video-creator-badge">📺 waltechman</div>
+        <div class="video-desc">Bloomberg 금융 기사 번역, Morgan Stanley 리서치 PDF 번역, 금융 전문가 AI 모드 시연 — 실제 투자 리서치 환경에서 Immersive Translate를 활용하는 방법을 보여줍니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTENT GUIDE ===== -->
+<section class="guide-bg" id="guide">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Content Guide</div>
+      <h2 class="sec-title">콘텐츠 제작 가이드</h2>
+      <p class="sec-desc">아래 3가지 방향 중 본인의 채널 성격에 맞는 방향을 선택하거나 자유롭게 조합하세요. 스크립트를 그대로 읽을 필요 없이, 핵심 메시지만 담아 본인의 스타일로 제작해주세요.</p>
+    </div>
+    <div class="guide-grid reveal">
+      <div class="guide-card">
+        <div class="guide-card-num">방향 A · 📊 미국주식 / 국내주식 투자자</div>
+        <div class="guide-card-title">「해외 공시 자료·어닝콜, 이렇게 깔끔하게 읽을 수 있었어?」</div>
+        <div class="guide-card-desc">문서 번역 기능과 이중언어 웹페이지 번역을 함께 활용하면, SEC 공시(10-K, 10-Q), 어닝콜 스크립트, Bloomberg 기사를 실시간으로 한국어로 읽을 수 있습니다. '금융 전문가 모드'를 선택하면 전문 용어도 훨씬 정확하게 번역됩니다.</div>
+        <div class="guide-quote">"미국 주식 실적 발표, 영어라서 남들보다 늦게 확인하고 계신가요? 몰입형 번역으로 어닝콜 스크립트와 SEC 공시를 실시간으로 읽어보세요. 언어가 장벽이 아니라 수익률을 높이는 무기가 됩니다."</div>
+        <div class="brief-card-tags" style="margin-top:12px;">
+          <span class="tag tag-finance">Bloomberg / WSJ</span>
+          <span class="tag tag-finance">SEC EDGAR</span>
+          <span class="tag tag-finance">어닝콜</span>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-num">방향 B · 🔗 Crypto / Web3 / DeFi</div>
+        <div class="guide-card-title">「AI도 눈을 감을 수 있어요. 내 자산 정보는 나만 봅니다.」</div>
+        <div class="guide-card-desc">계좌 번호, 프라이빗 키, 지갑 주소를 로컬에서 먼저 마스킹하기 때문에 클라우드에는 '익명 텍스트'만 전달됩니다. 영문 DeFi 백서, NFT 프로젝트 소개, 체인 게임 공략, AMA 내용을 안심하고 번역할 수 있습니다.</div>
+        <div class="guide-quote-web3">"번역하다가 내 계좌 정보나 지갑 주소가 새어 나갈까 봐 걱정되셨나요? Immersive Translate의 새 개인정보 보호 모드는 AI를 완전히 '눈먼 번역사'로 만들어줘요. 번역은 완벽하게 해주면서 내 핵심 자산 정보는 절대 볼 수 없죠."</div>
+        <div class="brief-card-tags" style="margin-top:12px;">
+          <span class="tag tag-web3">DeFi 백서</span>
+          <span class="tag tag-web3">NFT 프로젝트</span>
+          <span class="tag tag-web3">Discord / Telegram</span>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-num">방향 C · 🌐 글로벌 투자 정보 시차 없애기</div>
+        <div class="guide-card-title">「글로벌 투자 정보의 시차를 없애다」</div>
+        <div class="guide-card-desc">월스트리트 저널, 블룸버그 기사부터 X(트위터)의 실시간 KOL 트윗, Reddit의 밈 주식 동향까지 즉시 번역해 글로벌 흐름을 실시간으로 따라갈 수 있습니다. 해외 주식 종목 토론방, 외국어 NFT 커뮤니티 공지, AMA 내용을 자연스럽게 이해할 수 있습니다.</div>
+        <div class="guide-quote">"X(Twitter) 팔로우하는 해외 KOL들 트윗, 매번 번역기에 복붙하고 계신가요? 이머시브 번역 설치하면 타임라인 전체가 이중언어로 보여요. 글로벌 투자 흐름을 실시간으로 따라가세요."</div>
+        <div class="brief-card-tags" style="margin-top:12px;">
+          <span class="tag tag-blue">X(Twitter)</span>
+          <span class="tag tag-blue">Reddit</span>
+          <span class="tag tag-blue">글로벌 KOL 트윗</span>
+        </div>
+      </div>
+      <div class="guide-card" style="background:linear-gradient(135deg,var(--finance-50),var(--web3-50));border-color:var(--finance-200);">
+        <div class="guide-card-num" style="color:var(--finance-700)">📌 제작 시 주의사항</div>
+        <div class="guide-card-title">꼭 포함해야 할 핵심 메시지</div>
+        <div class="guide-card-desc" style="margin-bottom:0">
+          <strong style="color:var(--color-text-primary)">반드시 언급:</strong><br>
+          ① 이중언어 대조 번역 (원문 + 번역문 동시 표시)<br>
+          ② 금융 / Web3 전문가 AI 모드 존재<br>
+          ③ BabelDOC으로 리서치 PDF 번역 가능<br>
+          ④ USDT / USDC 결제 지원 (Web3 KOL 필수)<br><br>
+          <strong style="color:var(--color-text-primary)">가급적 포함:</strong><br>
+          ⑤ OneAIFW 프라이버시 보호 모드 (차별화 포인트)<br>
+          ⑥ 팔로워 전용 할인 코드 / 교환 코드 언급<br><br>
+          <strong style="color:var(--color-action-primary-default)">주의: 라이프스타일 브이로그에 짧게 삽입하는 광고 형식은 지양해주세요.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTALL GUIDE ===== -->
+<section class="install-bg" id="install">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Quick Start</div>
+      <h2 class="sec-title">빠른 시작 가이드</h2>
+      <p class="sec-desc">설치부터 프라이버시 보호 모드 활성화까지 3분이면 충분합니다.</p>
+    </div>
+    <div class="install-tabs reveal">
+      <button class="install-tab active" onclick="switchInstall(0)">💻 브라우저 설치</button>
+      <button class="install-tab" onclick="switchInstall(1)">🔒 프라이버시 보호 모드 활성화</button>
+      <button class="install-tab" onclick="switchInstall(2)">🧠 금융 전문가 모드 설정</button>
+    </div>
+    <div class="install-panel active" id="install-0">
+      <div class="install-steps reveal">
+        <div class="install-step">
+          <div class="install-step-num">01</div>
+          <div>
+            <div class="install-step-title">Chrome 웹 스토어에서 설치</div>
+            <div class="install-step-desc">Chrome, Edge, Firefox 등 주요 브라우저를 지원합니다. 공식 홈페이지에서 설치 링크를 확인하세요.</div>
+            <a href="https://immersivetranslate.com/ko/" target="_blank" class="install-step-link">immersivetranslate.com/ko/ ↗</a>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">02</div>
+          <div>
+            <div class="install-step-title">계정 생성 및 Pro 구독 (선택)</div>
+            <div class="install-step-desc">기본 기능은 무료입니다. Pro 멤버십으로 금융 전문가 AI 모드, BabelDOC 무제한 번역을 이용하세요. 신용카드 또는 USDT / USDC로 결제 가능합니다.</div>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">03</div>
+          <div>
+            <div class="install-step-title">Bloomberg / SEC EDGAR에서 바로 사용</div>
+            <div class="install-step-desc">설치 후 Bloomberg, WSJ, SEC EDGAR 등 금융 사이트를 열면 자동으로 이중언어 번역이 활성화됩니다. 단축키 <strong>Alt + A</strong>로 전체 페이지 번역, <strong>Ctrl + 마우스오버</strong>로 단락별 번역.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="install-panel" id="install-1">
+      <div class="install-steps reveal">
+        <div class="install-step">
+          <div class="install-step-num">01</div>
+          <div>
+            <div class="install-step-title">확장 프로그램 v1.23.3 이상으로 업데이트</div>
+            <div class="install-step-desc">Chrome 확장 프로그램 관리 페이지에서 최신 버전으로 업데이트하세요.</div>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">02</div>
+          <div>
+            <div class="install-step-title">설정 → 고급 설정 → 개인정보 보호 모드(베타)</div>
+            <div class="install-step-desc">Immersive Translate 아이콘 클릭 → 설정 → 고급 설정 → <strong>개인정보 보호 모드(베타)</strong> → '민감 정보 마스킹: 내장'을 켜주세요.</div>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">03</div>
+          <div>
+            <div class="install-step-title">DeFi 문서 / 투자 리포트에서 안심하고 번역</div>
+            <div class="install-step-desc">활성화 후 지갑 주소, 프라이빗 키, 계좌번호가 포함된 문서를 번역하면 민감 정보가 자동으로 마스킹됩니다. 현재 지원: 웹페이지 번역 / 문서 번역 (BabelDOC 추후 지원 예정).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="install-panel" id="install-2">
+      <div class="install-steps reveal">
+        <div class="install-step">
+          <div class="install-step-num">01</div>
+          <div>
+            <div class="install-step-title">번역 서비스 설정에서 AI 전문가 모드 선택</div>
+            <div class="install-step-desc">Immersive Translate 아이콘 → 번역 서비스 → AI 전문가 모드 드롭다운에서 <strong>'금융 전문가'</strong> 또는 <strong>'Web3 번역 전문가'</strong>를 선택하세요.</div>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">02</div>
+          <div>
+            <div class="install-step-title">Bloomberg 기사 또는 SEC 공시에서 테스트</div>
+            <div class="install-step-desc">금융 전문가 모드 활성화 후 Bloomberg 기사를 번역하면 gross profit margin → 매출총이익률, EPS → 주당순이익 등 전문 용어가 훨씬 정확하게 번역됩니다.</div>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">03</div>
+          <div>
+            <div class="install-step-title">BabelDOC으로 리서치 PDF 번역 (Pro)</div>
+            <div class="install-step-desc">Immersive Translate → PDF 번역 → BabelDOC을 선택하면 Morgan Stanley, Goldman Sachs 등 리서치 리포트를 레이아웃 그대로 이중언어로 번역합니다.</div>
+            <a href="https://immersivetranslate.com/ko/learn/" target="_blank" class="install-step-link">공식 튜토리얼 센터 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLLAB FLOW ===== -->
+<section class="collab-bg" id="collab">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Collaboration Flow</div>
+      <h2 class="sec-title">협업 프로세스</h2>
+      <p class="sec-desc">첫 컨택부터 잔금 정산까지 7단계, 계약서 체결·선금·잔금 모두 명확하고 투명하게, 숨겨진 프로세스 없습니다.</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step reveal">
+        <div class="flow-step-left"><div class="flow-step-num">01</div><div class="flow-step-line"></div></div>
+        <div class="flow-step-right">
+          <div class="flow-step-tag tag tag-blue">첫 컨택 확인</div>
+          <div class="flow-step-title">담당자 이메일로 연락, 계정 정보 안내</div>
+          <div class="flow-step-desc">주로 활동하는 플랫폼에 따라 담당자 이메일로 직접 연락하여 플랫폼, 팔로워 규모를 설명하고 계정 링크를 보내주세요. 영업일 1일 이내에 답변드립니다.</div>
+          <div class="flow-step-items"><span class="flow-item">📱 계정 링크 발송</span><span class="flow-item">👥 팔로워 규모 안내</span><span class="flow-item">📋 콘텐츠 방향 설명</span></div>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-step-left"><div class="flow-step-num">02</div><div class="flow-step-line"></div></div>
+        <div class="flow-step-right">
+          <div class="flow-step-tag tag tag-finance">자료 제공</div>
+          <div class="flow-step-title">협업 소재 페이지 + 전용 할인 코드 발송</div>
+          <div class="flow-step-desc">협업 확정 후 이 협업 참고 페이지 링크, 팔로워 전용 할인 코드 또는 교환 코드, 공식 로고 소재, Pro 무료 체험 계정(촬영용)을 보내드립니다.</div>
+          <div class="flow-step-items"><span class="flow-item">🔗 협업 참고 페이지</span><span class="flow-item">🏷️ 팔로워 전용 할인 코드</span><span class="flow-item">🎁 Pro 무료 체험 계정</span></div>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-step-left"><div class="flow-step-num">03</div><div class="flow-step-line"></div></div>
+        <div class="flow-step-right">
+          <div class="flow-step-tag tag tag-orange">계약 체결 &amp; 선금 지급</div>
+          <div class="flow-step-title">협업 계약서 서명 후 선금 지급</div>
+          <div class="flow-step-desc">협업 방향과 조건이 확정되면 간단한 협업 계약서를 체결합니다. 계약서에는 콘텐츠 요건, 게시 일정, 보수 조건, 수정 횟수 등이 명시됩니다. BabelDOC으로 계약서를 이중언어 대조로 검토하면 조항 하나하나를 정확히 파악할 수 있습니다. <strong>계약서 서명 완료 즉시 선금을 지급</strong>합니다.</div>
+          <div class="flow-step-items"><span class="flow-item">📄 협업 계약서 체결</span><span class="flow-item">💰 보수 조건 확정</span><span class="flow-item" style="background:var(--color-status-processing-bg);border-color:#ffd4a8;color:var(--color-status-processing-default)">💸 선금 즉시 지급</span></div>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-step-left"><div class="flow-step-num">04</div><div class="flow-step-line"></div></div>
+        <div class="flow-step-right">
+          <div class="flow-step-tag tag tag-orange">제작 &amp; 검토</div>
+          <div class="flow-step-title">자유롭게 제작, 두 단계만 가볍게 확인</div>
+          <div class="flow-step-desc">본인의 스타일과 언어로 자유롭게 제작하세요. 스크립트를 그대로 읽을 필요 없습니다. 가벼운 검토 단계가 두 번 있습니다: <strong>① 스크립트 검토</strong> — 촬영 전 핵심 정보가 맞는지 확인; <strong>② 영상 검토</strong> — 게시 전 빠르게 검토, 시청자 오해 방지 목적이며 콘텐츠 스타일에 간섭하지 않습니다.</div>
+          <div class="flow-step-items"><span class="flow-item">🎨 자유 제작, 스타일 자유</span><span class="flow-item">📝 스크립트 검토 (촬영 전)</span><span class="flow-item">🎬 영상 검토 (게시 전)</span></div>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-step-left"><div class="flow-step-num">05</div><div class="flow-step-line"></div></div>
+        <div class="flow-step-right">
+          <div class="flow-step-tag tag tag-violet">어필리에이트 프로그램</div>
+          <div class="flow-step-title">어필리에이트 프로그램 가입, 전환마다 커미션 수익</div>
+          <div class="flow-step-desc">협업 비용 외에도 Immersive Translate 어필리에이트 프로그램에 동시에 가입하는 것을 강력히 권장합니다. 팔로워가 전용 링크로 Pro를 구매하면 지속적인 커미션 수익을 얻을 수 있으며, 많은 KOL의 장기 패시브 인컴 원천이 됩니다.</div>
+          <div class="flow-step-items"><span class="flow-item">💰 전환마다 커미션 수익</span><span class="flow-item">🔗 전용 홍보 링크</span><a href="https://immersivetranslate.com/ko/affiliate/" target="_blank" class="flow-item" style="color:var(--finance-500);border-color:var(--finance-200);background:var(--finance-50)">📋 어필리에이트 프로그램 상세 보기 ↗</a></div>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-step-left"><div class="flow-step-num">06</div><div class="flow-step-line"></div></div>
+        <div class="flow-step-right">
+          <div class="flow-step-tag tag tag-green">게시 &amp; 댓글 고정</div>
+          <div class="flow-step-title">영상 게시 후 댓글 상단 고정 링크 &amp; 할인 코드</div>
+          <div class="flow-step-desc">영상 게시 후 댓글란 상단에 공식 홈페이지 링크와 팔로워 전용 할인 코드를 고정하고, 영상 마지막에 주간 이용권 추첨을 언급해주세요.</div>
+          <div class="benefit-cards">
+            <div class="benefit-card">
+              <div class="benefit-card-label" style="color:var(--color-status-processing-default)">🎁 팔로워 혜택 · 무료 주간 이용권 추첨</div>
+              <div class="benefit-card-title">무료 주간 이용권 × 최소 5장</div>
+              <div class="benefit-card-desc">최소 5장의 무료 주간 이용권을 제공하여 댓글란이나 영상 마지막에 추첨 이벤트를 진행하고 시청자 참여도와 전환율을 높이세요.</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-card-label" style="color:var(--finance-500)">🏷️ 팔로워 전용 혜택</div>
+              <div class="benefit-card-title">전용 할인 코드 또는 교환 코드</div>
+              <div class="benefit-card-desc">팔로워가 전용 코드로 Pro를 구매하면 10% 할인 혜택을 받거나 주간 이용권을 교환할 수 있습니다. 댓글 상단 고정 또는 영상 마지막에 반드시 언급해주세요.</div>
+            </div>
+          </div>
+          <div class="flow-step-items"><span class="flow-item">🔗 댓글 상단 고정 링크 &amp; 코드</span><span class="flow-item" style="background:var(--color-status-processing-bg);border-color:#ffd4a8;color:var(--color-status-processing-default)">🎁 추첨 주간 이용권 준비 완료</span></div>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-step-left"><div class="flow-step-num">07</div><div class="flow-step-line"></div></div>
+        <div class="flow-step-right">
+          <div class="flow-step-tag tag tag-green">정산 완료</div>
+          <div class="flow-step-title">성과 확인 후 잔금 정산 완료</div>
+          <div class="flow-step-desc">게시 후 약정된 기간(보통 7~14일) 동안 데이터를 관찰합니다. 성과 기준 충족 시 잔금을 지급하며 협업을 마무리합니다. 데이터가 우수하면 상황에 따라 <strong style="color:var(--color-feedback-success-default)">무료 광고 부스팅</strong>을 지원하여 더 많은 잠재 시청자에게 도달할 수 있도록 돕습니다.</div>
+          <div class="flow-step-items"><span class="flow-item">📊 게시 후 데이터 관찰</span><span class="flow-item">💰 잔금 정산</span><span class="flow-item" style="background:var(--color-feedback-success-bg);border-color:#b8e8b5;color:var(--color-feedback-success-default)">🚀 상황에 따른 무료 광고 부스팅</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials-bg" id="testimonials">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Real Users</div>
+      <h2 class="sec-title">실제 투자자들의 후기</h2>
+      <p class="sec-desc">미국주식 투자자, Crypto 유저, 글로벌 투자 리서처의 실제 사용 후기입니다.</p>
+    </div>
+    <div class="testi-scroll-track">
+      <div class="testi-scroll-inner">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">미국 주식 어닝콜 시즌마다 영어 때문에 스트레스 받았는데, 이머시브 번역 설치하고 나서 Bloomberg 기사를 이중언어로 바로 읽을 수 있게 됐어요. 금융 전문가 모드로 설정하니까 gross margin, EPS 같은 용어 번역도 정확하고 실적 발표 당일 남들보다 빠르게 대응할 수 있어요.</div>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:var(--finance-50)">📊</div>
+            <div>
+              <div class="testi-name">김민준 · 서울</div>
+              <div class="testi-role">미국주식 개인 투자자 · 5년 경력</div>
+              <span class="testi-plat" style="background:var(--finance-50);color:var(--finance-500)">미국주식</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">DeFi 프로젝트 백서 번역할 때 지갑 주소나 컨트랙트 주소가 클라우드에 올라갈까 봐 항상 걱정했는데, OneAIFW 모드 켜고 나서 완전히 안심이에요. MIT 오픈소스라서 코드 직접 확인했는데 정말 로컬에서만 처리하더라고요. 진짜 Web3 유저를 위해 만든 기능이에요.</div>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:var(--web3-50)">🔗</div>
+            <div>
+              <div class="testi-name">이준혁 · 부산</div>
+              <div class="testi-role">DeFi 투자자 · 스마트 컨트랙트 개발자</div>
+              <span class="testi-plat" style="background:var(--web3-50);color:var(--web3-500)">Web3 / DeFi</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">Morgan Stanley 반도체 리서치 리포트를 BabelDOC으로 번역했는데 표랑 차트가 하나도 안 깨지고 레이아웃 그대로 한국어로 나왔어요. 구글 번역은 표 다 깨지고 수식도 엉망이었는데 이건 진짜 달라요. 리서치 업무 효율이 2배는 올라간 것 같아요.</div>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:var(--color-feedback-info-bg)">📄</div>
+            <div>
+              <div class="testi-name">박지수 · 대구</div>
+              <div class="testi-role">증권사 애널리스트 · 글로벌 리서치 담당</div>
+              <span class="testi-plat" style="background:var(--color-feedback-info-bg);color:var(--color-feedback-info-default)">리서치 / 애널리스트</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">X(Twitter)에서 팔로우하는 해외 투자 KOL들 트윗을 매번 번역기에 복붙했는데, 이머시브 번역 설치하고 나서 타임라인 전체가 이중언어로 보여요. Reddit WallStreetBets 밈 주식 동향도 실시간으로 파악할 수 있어서 글로벌 흐름을 훨씬 빠르게 따라갈 수 있어요.</div>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:var(--primitive-pink-50)">🌐</div>
+            <div>
+              <div class="testi-name">최수연 · 인천</div>
+              <div class="testi-role">글로벌 투자 유튜버 · 팔로워 8만</div>
+              <span class="testi-plat" style="background:var(--primitive-pink-50);color:var(--color-action-primary-default)">투자 크리에이터</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">NFT 프로젝트 AMA 내용이나 Discord 공지를 실시간으로 번역할 수 있어서 정보 시차가 완전히 없어졌어요. USDT로 Pro 결제할 수 있는 것도 Web3 유저 입장에서 너무 편해요. 신용카드 없이 바로 구독할 수 있으니까요.</div>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:var(--web3-50)">🎨</div>
+            <div>
+              <div class="testi-name">정민서 · 서울</div>
+              <div class="testi-role">NFT 컬렉터 · Web3 커뮤니티 운영자</div>
+              <span class="testi-plat" style="background:var(--web3-50);color:var(--web3-500)">NFT / Web3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ENTERPRISE ===== -->
+<section class="enterprise-bg" id="enterprise">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Enterprise Plan</div>
+      <h2 class="sec-title">기업 단체 Pro 플랜</h2>
+      <p class="sec-desc">투자 리서치 팀, 자산운용사, Web3 프로젝트 팀 — 팀 전체에 Pro를 일괄 개통하려면 협의 가격을 제공합니다.</p>
+    </div>
+    <div class="enterprise-simple-card reveal">
+      <div class="enterprise-simple-left">
+        <div class="enterprise-simple-icon">🏢</div>
+        <div>
+          <div class="enterprise-simple-title">팀 단체 Pro 개통, 협의 가격 적용</div>
+          <div class="enterprise-simple-desc">투자 리서치 팀, 자산운용사, 증권사 리서치 부서, Web3 프로젝트 팀 등 직원에게 일괄 Pro를 개통해야 하는 팀에 적합합니다. 구체적인 견적은 Yara에게 문의하세요.</div>
+        </div>
+      </div>
+      <div>
+        <div class="enterprise-cta-title">📩 Yara에게 견적 문의</div>
+        <div class="enterprise-cta-sub">이메일：<strong style="font-family:'JetBrains Mono',monospace">yara@babelnovel.com</strong></div>
+        <button class="enterprise-cta-btn" onclick="copyEnterpriseWx(this)">이메일 복사</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact-bg" id="contact">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Contact</div>
+      <h2 class="sec-title">문의하기</h2>
+      <p class="sec-desc">주로 활동하는 플랫폼에 따라 담당자 이메일로 직접 연락하여 플랫폼과 팔로워 규모를 알려주시면 빠르게 답변드립니다.</p>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:800px;margin:0 auto">
+      <div class="wx-card" style="display:flex;align-items:center;gap:12px;padding:16px 20px">
+        <div class="wx-platform" style="flex-shrink:0"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/TikTok_logo.svg/512px-TikTok_logo.svg.png" alt="YouTube" style="width:24px;height:24px;object-fit:contain" onerror="this.parentNode.innerHTML='📺'" /></div>
+        <div class="wx-info" style="flex:1;min-width:0">
+          <div class="wx-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">恩青 · YouTube / TikTok 담당</div>
+          <div class="wx-id">songenqing@funstory.ai</div>
+        </div>
+        <button class="wx-copy" style="flex-shrink:0" onclick="copyWx(this,'songenqing@funstory.ai')">이메일 복사</button>
+      </div>
+      <div class="wx-card" style="display:flex;align-items:center;gap:12px;padding:16px 20px">
+        <div class="wx-platform" style="flex-shrink:0"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/512px-Instagram_logo_2016.svg.png" alt="Instagram" style="width:24px;height:24px;object-fit:contain" onerror="this.parentNode.innerHTML='📷'" /></div>
+        <div class="wx-info" style="flex:1;min-width:0">
+          <div class="wx-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Yara · Instagram / 기타 플랫폼 담당</div>
+          <div class="wx-id">yara@babelnovel.com</div>
+        </div>
+        <button class="wx-copy" style="flex-shrink:0" onclick="copyWx(this,'yara@babelnovel.com')">이메일 복사</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div class="footer-logo-row">
+      <img class="footer-logo-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/qOWZlzkGYKQJxogq.png" alt="" />
+      <span class="footer-name">Immersive Translate</span>
+    </div>
+    <div class="footer-desc">전 세계 2,000만 명 이상이 신뢰하는 AI 번역 툴 · 미국주식 / 국내주식 / Web3 KOL 협업 자료</div>
+    <div class="footer-links">
+      <a href="https://immersivetranslate.com/ko/" target="_blank">공식 홈페이지</a>
+      <a href="https://immersivetranslate.com/ko/affiliate/" target="_blank">어필리에이트 프로그램</a>
+      <a href="https://immersivetranslate.com/ko/learn/" target="_blank">튜토리얼 센터</a>
+      <a href="#brief">제품 브리프</a>
+      <a href="#demo">기능 시연</a>
+      <a href="#guide">제작 가이드</a>
+      <a href="#collab">협업 프로세스</a>
+    </div>
+  </div>
+</footer>
+
+<!-- COLLAB MODAL -->
+<div class="modal-overlay" id="collabModal" onclick="closeModal('collabModal')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('collabModal')">×</button>
+    <div class="modal-title">🤝 협업 문의하기</div>
+    <div class="modal-sub">주로 활동하는 플랫폼에 따라 담당자 이메일로 직접 연락하여 플랫폼과 팔로워 규모를 알려주시고 계정 링크를 보내주세요. 빠르게 답변드립니다.</div>
+    <div class="wx-card"><div class="wx-platform"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/TikTok_logo.svg/512px-TikTok_logo.svg.png" alt="YouTube" style="width:22px;height:22px;object-fit:contain" onerror="this.parentNode.innerHTML='📺'" /></div><div class="wx-info"><div class="wx-name">恩青 · YouTube / TikTok 담당</div><div class="wx-id">songenqing@funstory.ai</div></div><button class="wx-copy" onclick="copyWx(this,'songenqing@funstory.ai')">이메일 복사</button></div>
+    <div class="wx-card"><div class="wx-platform"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/512px-Instagram_logo_2016.svg.png" alt="Instagram" style="width:22px;height:22px;object-fit:contain" onerror="this.parentNode.innerHTML='📷'" /></div><div class="wx-info"><div class="wx-name">Yara · Instagram / 기타 플랫폼 담당</div><div class="wx-id">yara@babelnovel.com</div></div><button class="wx-copy" onclick="copyWx(this,'yara@babelnovel.com')">이메일 복사</button></div>
+  </div>
+</div>
+
+<!-- SHARE MODAL -->
+<div class="modal-overlay" id="shareModal" onclick="closeModal('shareModal')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('shareModal')">×</button>
+    <div class="modal-title">🔗 이 자료 공유하기</div>
+    <div class="modal-sub">이 협업 참고 자료를 관심 있는 KOL이나 동료에게 공유하여 Immersive Translate의 투자/Web3 KOL 협업 기회를 알려주세요.</div>
+    <div style="padding:12px;background:var(--primitive-neutral-100);border-radius:var(--radius-button);border:1px solid var(--color-border-subtle);font-size:13px;font-family:'JetBrains Mono',monospace;color:var(--color-text-secondary);word-break:break-all;margin-bottom:12px">https://it-kol.github.io/finance-kr/</div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="copyUrl()">📋 링크 복사</button>
+    <div class="share-grid">
+      <div class="share-item" onclick="shareToKakao()"><span class="share-plat-icon">💬</span><span class="share-plat-label">카카오톡</span></div>
+      <div class="share-item" onclick="shareToNaver()"><span class="share-plat-icon">🟢</span><span class="share-plat-label">네이버</span></div>
+      <div class="share-item" onclick="shareToTwitter()"><span class="share-plat-icon">🐦</span><span class="share-plat-label">Twitter/X</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Demo tabs
+  function switchDemo(idx) {
+    document.querySelectorAll('.demo-tab').forEach((t, i) => {
+      t.classList.remove('active', 'active-web3');
+      if (i === idx) {
+        t.classList.add(idx === 2 ? 'active-web3' : 'active');
+      }
+    });
+    document.querySelectorAll('.demo-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+
+  // Install tabs
+  function switchInstall(idx) {
+    document.querySelectorAll('.install-tab').forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.install-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+
+  // Modal
+  function openModal(id) { document.getElementById(id).classList.add('open'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+  // Mobile nav
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+
+  // Copy email
+  function copyWx(btn, id) {
+    navigator.clipboard.writeText(id).then(() => {
+      btn.textContent = '복사됨 ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '이메일 복사'; btn.classList.remove('copied'); }, 2000);
+    }).catch(() => {
+      btn.textContent = '복사됨 ✓';
+      setTimeout(() => { btn.textContent = '이메일 복사'; }, 2000);
+    });
+  }
+
+  // Copy URL
+  function copyUrl() {
+    navigator.clipboard.writeText('https://it-kol.github.io/finance-kr/').then(() => {
+      alert('링크가 복사되었습니다!');
+    });
+  }
+
+  function shareToKakao() { copyUrl(); alert('링크가 복사되었습니다. 카카오톡에 붙여넣기 하세요.'); }
+  function shareToNaver() { window.open('https://share.naver.com/web/shareView?url=' + encodeURIComponent('https://it-kol.github.io/finance-kr/') + '&title=' + encodeURIComponent('Immersive Translate × 미국주식 / 국내주식 / Web3 KOL 협업 참고 자료')); }
+  function shareToTwitter() { window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent('https://it-kol.github.io/finance-kr/') + '&text=' + encodeURIComponent('Immersive Translate × 미국주식 / 국내주식 / Web3 KOL 협업 참고 자료')); }
+
+  // Copy enterprise email
+  function copyEnterpriseWx(btn) {
+    navigator.clipboard.writeText('yara@babelnovel.com').then(() => {
+      btn.textContent = '복사됨 ✓';
+      btn.style.opacity = '0.7';
+      setTimeout(() => { btn.textContent = '이메일 복사'; btn.style.opacity = ''; }, 2000);
+    }).catch(() => {
+      btn.textContent = '복사됨 ✓';
+      setTimeout(() => { btn.textContent = '이메일 복사'; }, 2000);
+    });
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
